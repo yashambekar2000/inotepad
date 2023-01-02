@@ -1,3 +1,6 @@
+body{
+  background-color: rgba(92, 172, 252, 0.575);
+}
 .App {
   text-align: center;
 }
@@ -24,8 +27,25 @@
   color: white;
 }
 
+
+/* .popupscreen{
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.493);
+  z-index: 999;
+position: absolute;
+top: 0%;
+} */
+
+/* .popupmsg{
+  width: 40%;
+  align-items: center;
+justify-content: center;
+
+} */
 .App-link {
   color: #61dafb;
+ 
 }
 
 @keyframes App-logo-spin {
