@@ -10,7 +10,7 @@ body{
     color: cornflowerblue;
     /* padding-left: 20px; */
     /* padding-top: auto; */
-    padding-bottom: auto;
+    /* padding-bottom: auto; */
     display: flex;
     flex-direction: row;
     position: fixed;
@@ -27,6 +27,7 @@ body{
 }
 .logo{
 margin-bottom: auto;
+margin-top: 5px;
 margin-left: 20px;
 font-size: 15px;
 }
@@ -42,7 +43,8 @@ li{
 }
 
 .list{
-    margin-left: 750px;
+    margin-left: 730px;
+    margin-top: 10px;
 }
 
 a{

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import './css/navbar.css'
 
 function popup(){
@@ -28,7 +29,7 @@ const navbar = ()=> {
     return (
       <div className='nav'>
         <div className='logo'>
-            <h2><a href="#">iNotePad</a> </h2>
+            <h2><Link to="/no">iNotePad</Link> </h2>
         </div>
         <div className='popupscreen'>
           
@@ -39,10 +40,10 @@ const navbar = ()=> {
       
         <div className='list'>
             <ul>
-                <li><a href="#">Home</a> </li>
-                <li><a href="#">Notes</a> </li>
-                <li><a href="#">Account</a> </li>
-                <li><a href="#">About</a> </li>
+                <li><Link to="/">Home</Link> </li>
+               
+                <li><Link to="/account">Account</Link> </li>
+                <li><Link to="/about">About</Link> </li>
                 <li><button  className='popupms' onClick={popup}>SingIn/SignUp</button> </li>
             </ul>
         </div>

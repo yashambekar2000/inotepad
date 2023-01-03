@@ -20,13 +20,13 @@ const userDetail = ()=> {
 <h2>Tittle</h2>
 <p>Date</p>
 
-    <textarea name="note" id="" cols="65" rows="10">note</textarea>
+    <textarea name="note" id="" cols="65" rows="10"></textarea>
 
    
 
        </div>
       
-       <div class="vl"></div>
+       <div className="vl"></div>
       </div>
     );
   }
