@@ -2,7 +2,7 @@
     margin-top: 80px;
     width: 40%;
     margin-left: 20px;
-   
+   /* z-index: -999; */
 }
 
 .userdetail{
@@ -17,7 +17,7 @@
 
 .vl {
     border-left: 4px solid black;
-    height: 500px;
+    height: 550px;
     width: 30px;
     position: absolute;
     top: 70px;
@@ -29,4 +29,31 @@
     background-color: cornflowerblue;
   }
 
- 
+  @media only screen and (max-width: 900px) {
+    
+    .mainpage{
+        margin-top: 80px;
+        width: 90%;
+        margin-left: 15px;
+       
+    }
+    
+    .userdetail{
+        border: 2px solid black;
+        padding: 5px;
+    }
+    
+    .notemake{
+        border: 2px solid black;  
+        padding-bottom: 20px;
+    }
+    
+    
+    .vl {
+    display: none;
+      }
+
+      textarea{
+        width: 90%;
+      }
+  }

@@ -1,9 +1,10 @@
 
 import './App.css';
 import React from 'react'
-import Navbar from './components/navbar';
-import Userdetail from './components/userDetail'
+import Navbar from './components/Navbar';
+import Userdetail from './components/UserDetail'
 import About from './components/About'
+import Notes from './components/Notes';
 import NoteState from './context/notes/NoteState';
 import {
   BrowserRouter as Router,
@@ -23,6 +24,7 @@ function App() {
 <Switch>
 <Route exact path="/">
 <Userdetail />
+<Notes />
 </Route>
 <Route exact path="/about">
 <About/>

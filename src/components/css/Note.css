@@ -1,0 +1,24 @@
+body{
+    
+}
+.notesfield{
+margin-left: 50%;
+width: 45%;
+position: absolute;
+top: 70px;
+height:550px;
+overflow-y: scroll;
+/* z-index: 1; */
+}
+
+@media only screen and (max-width: 900px) {
+    .notesfield{
+        margin-left: 15px;
+        width: 90%;
+        /* position: absolute;
+        top: 70px; */
+        position: relative;
+        height:550px;
+        overflow-y: scroll;
+        }
+  }

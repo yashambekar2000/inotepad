@@ -15,7 +15,7 @@ const update = ()=>{
             "name":"Raj",
             "class":"9A"
         })
-    },1000);
+    },2000);
 }
     return(
         <NoteContext.Provider value={{state , update}}>

@@ -3,7 +3,7 @@ import './css/userDetail.css'
 
 
 
-const userDetail = ()=> {
+const UserDetail = ()=> {
   
     return (
       <div className='mainpage'>
@@ -15,7 +15,7 @@ const userDetail = ()=> {
         <label htmlFor="">Mobile Number :- </label>
         <span> 1234567890</span>
        </div>
-       <hr />
+       <br />
        <div className='notemake'>
 <h2>Tittle</h2>
 <p>Date</p>
@@ -32,4 +32,4 @@ const userDetail = ()=> {
   }
 
 
-export default userDetail
+export default UserDetail
