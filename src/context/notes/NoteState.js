@@ -2,104 +2,107 @@
 import { useState } from "react";
 import NoteContext from "./NoteContext";
 
-const NoteState = (props)=>{
+const NoteState = (props) => {
+
+  const host = "http://localhost:5000";
+
+  const notesInitial = []
+  const [notes, setNotes] = useState(notesInitial);
 
 
 
 
- 
-    const notesInitial = [
-        {
-          "_id": "63ad7b7afb3794233ca2f53ca",
-          "user": "63ac3689a102767e27b2093f",
-          "tittle": "instagram1",
-          "description": "instagram1 is a soscial app",
-          "tag": "instagram1 App",
-          "date": "2022-12-29T11:35:22.631Z",
-          "__v": 0
-        },
-        {
-          "_id": "63ad7ba4fb3794233ca2f53ef",
-          "user": "63ac3689a102767e27b2093f",
-          "tittle": "instagram2",
-          "description": "instagram2 is a soscial app",
-          "tag": "instagram2 App",
-          "date": "2022-12-29T11:36:04.317Z",
-          "__v": 0
-        },
-        {
-          "_id": "63ad7b7afb3794233ca2f53cq",
-          "user": "63ac3689a102767e27b2093f",
-          "tittle": "instagram1",
-          "description": "instagram1 is a soscial app",
-          "tag": "instagram1 App",
-          "date": "2022-12-29T11:35:22.631Z",
-          "__v": 0
-        },
-        {
-          "_id": "63ad7ba4fb3794233ca2f53ey",
-          "user": "63ac3689a102767e27b2093f",
-          "tittle": "instagram2",
-          "description": "instagram2 is a soscial app",
-          "tag": "instagram2 App",
-          "date": "2022-12-29T11:36:04.317Z",
-          "__v": 0
-        },
-        {
-          "_id": "63ad7b7afb3794233ca2f53ch",
-          "user": "63ac3689a102767e27b2093f",
-          "tittle": "instagram1",
-          "description": "instagram1 is a soscial app",
-          "tag": "instagram1 App",
-          "date": "2022-12-29T11:35:22.631Z",
-          "__v": 0
-        },
-        {
-          "_id": "63ad7ba4fb3794233ca2f53el",
-          "user": "63ac3689a102767e27b2093f",
-          "tittle": "instagram2",
-          "description": "instagram2 is a soscial app",
-          "tag": "instagram2 App",
-          "date": "2022-12-29T11:36:04.317Z",
-          "__v": 0
-        }
-      ];
+
+  //**********Add Notes  ******* */
+  const addNote = async (tittle, description, tag) => {
+
+    const response = await fetch(`${host}/api/notes/savenotes`, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+        'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjNhYzM2ODlhMTAyNzY3ZTI3YjIwOTNmIn0sImlhdCI6MTY3MjI5Mzc1Nn0.-gH5k4SWFz_c-jtzTgQWT1V4brzJisMVZpT6wiG0wyE'
+      },
+      body: JSON.stringify({ tittle, description, tag })
+    });
+    const note =await response.json();
+    setNotes(notes.concat(note));
+  }
 
 
 
-   
 
-const [notes , setNotes] = useState(notesInitial);
+  //*********Get Notes  ******* */
+  const getNote = async () => {
+    const response = await fetch(`${host}/api/notes/fetchallnotes`, {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+        "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjNhYzM2ODlhMTAyNzY3ZTI3YjIwOTNmIn0sImlhdCI6MTY3MjI5Mzc1Nn0.-gH5k4SWFz_c-jtzTgQWT1V4brzJisMVZpT6wiG0wyE"
+      }
 
- //**********Add Notes  ******* */
- const addNote = (tittle,description,tag)=>{
-const note={
-  "_id": "63ad7ba4fb3794233ca2f53em",
-  "user": "63ac3689a102767e27b2093f",
-  "tittle": tittle,
-  "description": description,
-  "tag": tag,
-  "date": "2022-12-29T11:36:04.317Z",
-  "__v": 0
-}
-setNotes(notes.concat(note));
- }
+    });
+    const json = await response.json();
+    console.log(json);
+    setNotes(json);
 
- //*********Get Notes  ******* */
- const getNote = ()=>{
-   
- }
+  }
 
- //**********Delete Notes  ******* */
- const deleteNote = ()=>{
-   
- }
 
-    return(
-        <NoteContext.Provider value={{notes , setNotes ,addNote ,getNote ,deleteNote}}>
-            {props.children}
-        </NoteContext.Provider>
-    )
+
+  //**********Delete Notes  ******* */
+  const deleteNote = async (id) => {
+    const response = await fetch(`${host}/api/notes/deletenotes/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'content-type': 'application/json',
+        'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjNhYzM2ODlhMTAyNzY3ZTI3YjIwOTNmIn0sImlhdCI6MTY3MjI5Mzc1Nn0.-gH5k4SWFz_c-jtzTgQWT1V4brzJisMVZpT6wiG0wyE'
+      },
+      // body: JSON.stringify({tittle, description, tag})
+    });
+    const json =await response.json();
+    console.log("your note deleted" + id);
+
+    const newNotes = notes.filter((notes) => { return notes._id !== id });
+    setNotes(newNotes);
+  }
+
+
+
+
+  //********** Edit Notes *************** */
+  const editNote = async (id, tittle, description, tag) => {
+
+    const response = await fetch(`${host}/api/notes/updatenotes/${id}`, {
+      method: 'PUT',
+      headers: {
+        'content-type': 'application/json',
+        'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjNhYzM2ODlhMTAyNzY3ZTI3YjIwOTNmIn0sImlhdCI6MTY3MjI5Mzc1Nn0.-gH5k4SWFz_c-jtzTgQWT1V4brzJisMVZpT6wiG0wyE'
+      },
+      body: JSON.stringify({ tittle, description, tag })
+    });
+    const json =await response.json();
+    console.log(json);
+
+    let newNote = JSON.parse(JSON.stringify(notes));
+    //*****Logic to edit in client */
+    for (let index = 0; index < newNote.length; index++) {
+      const element = newNote[index];
+      if (element._id === id) {
+        newNote[index].tittle = tittle;
+        newNote[index].description = description;
+        newNote[index].tag = tag;
+        break;
+      }
+    }
+    setNotes(newNote);
+  }
+
+
+  return (
+    <NoteContext.Provider value={{ notes, setNotes, addNote, getNote, deleteNote, editNote }}>
+      {props.children}
+    </NoteContext.Provider>
+  )
 
 }
 

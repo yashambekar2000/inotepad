@@ -8,11 +8,12 @@ const UserDetail = ()=> {
   const context = useContext(noteContext);
   const {addNote} = context;
 
-  const [note , setNote] = useState({tittle:"" , description:"" , tag:"default"})
+  const [note , setNote] = useState({tittle:"" , description:"" , tag:""})
 
   const handleClick = (e)=>{
    e.preventDefault();
     addNote(note.tittle,note.description,note.tag);
+    setNote({tittle:"" , description:"" , tag:""});
   }
 
   const onChange = (e)=>{
@@ -35,13 +36,16 @@ setNote({...note,[e.target.name]: e.target.value})
        <div className='notemake'>
 <div className='tittlediv'>
 <label htmlFor="tittle">Add Tittle : </label><br />
-<input type="text" id="tittle" name="tittle" onChange={onChange} />
+<input type="text" id="tittle" name="tittle" onChange={onChange} value={note.tittle} minLength={3} required/>
 </div>
-
+<div className='tagdiv'>
+<label htmlFor="tag">Add Tag : </label><br />
+<input type="text" id="tag" name="tag" value={note.tag} onChange={onChange} required/>
+</div>
 <label htmlFor="description">Add Description : </label>
-    <textarea name="description" id="description" cols="65" rows="10" onChange={onChange}></textarea>
+    <textarea name="description" id="description" cols="65" rows="10" value={note.description} onChange={onChange} minLength={5} required></textarea>
 
-   <button className='submitaddnote' onClick={handleClick}>Submit</button>
+   <button disabled={note.tittle.length<3 || note.description.legth<5} className='submitaddnote' onClick={handleClick}>Submit</button>
 
        </div>
       
