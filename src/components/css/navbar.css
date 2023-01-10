@@ -15,6 +15,7 @@ body{
     flex-direction: row;
     position: fixed;
     top:0;
+    z-index: 1;
 }
 .popupms{
     text-decoration: none;
