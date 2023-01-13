@@ -1,6 +1,6 @@
 var jwt = require('jsonwebtoken');
 const JWT_SEC = 'yashu';
-const fetchuser = (req , res , next)=>{
+const fetchUser = (req , res , next)=>{
 //get the user from jwt token and add id to request object
 const token = req.header('auth-token');
 if(!token){
@@ -17,4 +17,4 @@ try{
 
 }
 
-module.exports = fetchuser
+module.exports = fetchUser

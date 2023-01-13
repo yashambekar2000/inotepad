@@ -1,19 +1,28 @@
-import React,{ useContext , useState }  from 'react'
+import React,{ useContext , useState , useEffect }  from 'react'
 import './css/userDetail.css'
 import Notes from './Notes';
 import noteContext from '../context/notes/NoteContext'
 
 
-const UserDetail = ()=> {
+const UserDetail = (props)=> {
   const context = useContext(noteContext);
-  const {addNote} = context;
-
+  const {addNote,getUser,userdata } = context;
+const{ showAlert} = props;
   const [note , setNote] = useState({tittle:"" , description:"" , tag:""})
 
+  useEffect(() => {
+  
+  getUser();
+   
+  }, [])
+  
   const handleClick = (e)=>{
    e.preventDefault();
     addNote(note.tittle,note.description,note.tag);
     setNote({tittle:"" , description:"" , tag:""});
+   
+    showAlert("Added Successfully ","success");
+  
   }
 
   const onChange = (e)=>{
@@ -25,12 +34,12 @@ setNote({...note,[e.target.name]: e.target.value})
     return (
       <div className='mainpage'>
        <div className='userdetail'>
-        <h2>Yash Ambekar</h2>
+        <h2>{userdata.name}</h2>
         <label htmlFor="">Username :- </label>
-        <span> Ambekaryash</span>
+        <span> {userdata.name}</span>
         <br />
         <label htmlFor="">Mobile Number :- </label>
-        <span> 1234567890</span>
+        <span>{userdata.mobile}</span>
        </div>
        <br />
        <div className='notemake'>
@@ -50,7 +59,7 @@ setNote({...note,[e.target.name]: e.target.value})
        </div>
       
        <div className="vl"></div>
-       <Notes />
+       <Notes showAlert={showAlert}/>
       </div>
     );
   }

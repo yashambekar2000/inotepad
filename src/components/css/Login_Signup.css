@@ -1,0 +1,48 @@
+body{
+    margin: 0;
+    padding: 0;
+    
+}
+
+
+.loginSignup{
+    width: 40%;
+    height: 400px;
+    margin-top: 200px;
+    text-align: center;
+    border: 2px solid black;
+margin-left: 30%;
+}
+
+.loginInput{
+    margin-top: 10px;
+    height: 40px;
+    border-radius: 2em;
+    font-size: 15px;
+}
+
+.loginLabel{
+    margin-top: 10px;
+    font-size: 25px;
+    font-weight: 800;
+}
+
+.loginbtn{
+    margin-top: 25px;
+    border-radius: 2em;
+    font-size: 20px;
+    font-weight: 700;
+    width: 30%;
+    background-color: cornflowerblue;
+}
+
+.registerancr{
+    margin-top: 60px;
+    font-size: 25px;
+    font-weight: 600;
+  
+}
+
+.ancrsignup{
+    color: rgb(30, 30, 233);
+}

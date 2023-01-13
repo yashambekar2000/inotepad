@@ -2,23 +2,30 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import './css/Note.css';
 import NoteItem from './NoteItem';
 import noteContext from '../context/notes/NoteContext'
+import { useHistory } from 'react-router-dom';
 
-const Notes = () => {
+const Notes = (props) => {
     const context = useContext(noteContext);
-    const { notes, getNote , editNote } = context;
+    const { notes, getNote, editNote } = context;
+    const { showAlert } = props;
 
-
-
+    const history = useHistory();
     const [note, setNote] = useState({ eid: "", etittle: "", edescription: "", etag: "" })
     useEffect(() => {
-        getNote();
+        if (localStorage.getItem('token')) {
+            getNote();
+        } else {
+            history.push("/loginSignup");
+        }
+
     }, [])
 
     const handleClick = (e) => {
         console.log("updating the note ....");
         e.preventDefault();
-        editNote(note.eid , note.etittle , note.edescription , note.etag);
+        editNote(note.eid, note.etittle, note.edescription, note.etag);
         refClose.current.click();
+        props.showAlert("Updated Successfully ", "success");
     }
 
     const onChange = (e) => {
@@ -29,6 +36,7 @@ const Notes = () => {
     const updateNote = (currentNote) => {
         ref.current.click();
         setNote({ eid: currentNote._id, etittle: currentNote.tittle, etag: currentNote.tag, edescription: currentNote.description });
+
     }
 
     const ref = useRef(null);
@@ -50,11 +58,11 @@ const Notes = () => {
                             <div className='notemake'>
                                 <div className='tittlediv'>
                                     <label htmlFor="etittle">Add Tittle : </label><br />
-                                    <input type="text" id="etittle" name="etittle" value={note.etittle} onChange={onChange} minLength={3} required/>
+                                    <input type="text" id="etittle" name="etittle" value={note.etittle} onChange={onChange} minLength={3} required />
                                 </div>
                                 <div className='tagdiv'>
                                     <label htmlFor="etag">Add Tag : </label><br />
-                                    <input type="text" id="etag" name="etag" value={note.etag} onChange={onChange} required/>
+                                    <input type="text" id="etag" name="etag" value={note.etag} onChange={onChange} required />
                                 </div>
                                 <label htmlFor="edescription">Add Description : </label>
                                 <textarea name="edescription" id="edescription" cols="65" rows="10" value={note.edescription} onChange={onChange} minLength={5} required></textarea>
@@ -63,7 +71,7 @@ const Notes = () => {
                         </div>
                         <div className="modal-footer">
                             <button type="button" ref={refClose} className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" disabled={note.etittle.length<3 || note.edescription.legth<5} className="btn btn-primary" onClick={handleClick}>Update Note</button>
+                            <button type="button" disabled={note.etittle.length < 3 || note.edescription.legth < 5} className="btn btn-primary" onClick={handleClick}>Update Note</button>
                         </div>
                     </div>
                 </div>
@@ -73,10 +81,10 @@ const Notes = () => {
             <div className='notesfield'>
                 <h2>Your Notes</h2>
                 <div className="container mx-2">
-                {notes.length===0 && 'No Notes to show'}
+                    {notes.length === 0 && 'No Notes to show'}
                 </div>
                 {notes.map((notes) => {
-                    return <NoteItem key={notes._id} updateNote={updateNote} notes={notes} />;
+                    return <NoteItem key={notes._id} updateNote={updateNote} showAlert={showAlert} notes={notes} />;
                 })}
                 {/* <h2>Tittle 1</h2>
 <p>Date 1</p>

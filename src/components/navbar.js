@@ -1,5 +1,5 @@
 import React,{ useEffect } from 'react'
-import { Link , useLocation } from 'react-router-dom';
+import { Link , useHistory, useLocation } from 'react-router-dom';
 import './css/navbar.css'
 
 let hamburger = document.getElementsByClassName("hamburger");
@@ -19,29 +19,15 @@ function mobileMenu() {
   }
   }
 
-function popup(){
-  var divstyle = document.getElementsByClassName('popupscreen');
-  var insideMsg = document.getElementsByClassName('popupmsg');
-  // divstyle.style.display="block"
-  divstyle[0].style.width="100%"
-  divstyle[0].style.height="100vh"
-  divstyle[0].style.backgroundColor="rgba(0, 0, 0, 0.493)"
-  // divstyle[0].style.position="absolute"
-  divstyle[0].style.top="0%"
-  divstyle[0].style.zIndex="999 !important"
-  insideMsg[0].style.width="400px"
-  insideMsg[0].style.height="500px"
-  insideMsg[0].style.marginLeft="510px"
-  insideMsg[0].style.alignItems="center"
-  insideMsg[0].style.alignContent="center"
-  insideMsg[0].style.backgroundColor="#61dafb"
-  insideMsg[0].style.marginTop="100px"
-  insideMsg[0].style.border="2px solid white"
-  // insideMsg[0].style.position="fixed"
-  insideMsg[0].style.zIndex="999"
- 
- }
+
+  
 const Navbar = ()=> {
+ const history = useHistory();
+ const handleLogout = ()=>{
+  localStorage.removeItem('token');
+  history.push("/loginSignup");
+
+ }
  
   let location = useLocation();
   useEffect(() => {
@@ -74,7 +60,7 @@ const Navbar = ()=> {
                
                 <li className='list-item'><Link to="/account" className={`nav-link ${location.pathname==="/account"? "active": ""}`}>Account</Link> </li>
                 <li className='list-item'><Link to="/about" className={`nav-link ${location.pathname==="/about"? "active": ""}`}>About</Link> </li>
-                <li className='list-item'><button  className='popupms' onClick={popup}>SingIn/SignUp</button> </li>
+                <li className='list-item'>{!localStorage.getItem('token')?<Link to="/loginSignup"className='popupms' >SingIn/SignUp</Link>:<button onClick={handleLogout} className='popupms'>Logout</button>} </li>
             </ul>
         </div>
         

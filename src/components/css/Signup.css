@@ -1,0 +1,46 @@
+.headersignup{
+    /* text-align: center; */
+    margin-top: 200px;
+    margin-left: 3%;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+
+
+.signupdiv{
+    /* margin-top: 200px; */
+    height: 500px;
+    width: 50%;
+    padding: 20px;
+    border: 2px solid black;
+    margin-left: 25%;
+}
+
+.inputsignup{
+    width: 50%;
+    height: 40px;
+    font-size: 20px;
+    margin-left: 30px;
+    text-align: center;
+    margin-top: 30px;
+
+}
+
+.labelinsignup{
+    text-align: left;
+    width: 220px;
+    margin-top: 30px;
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.signupformsubmit{
+margin-top: 60px;
+width: 70%;
+height: 50px;
+background-color: rgb(34, 146, 238);
+color: rgb(11, 73, 243);
+font-size: 25px;
+font-weight: 700;
+border-radius: 2em;
+}
